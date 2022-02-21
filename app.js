@@ -18,3 +18,17 @@ app.get('/', (req, res) => {
 })
 
 const server = app.listen(port, () => console.log(`The app is listening on port ${port}`))
+
+// handle uncaughtException Error
+process.on('uncaughtException', err => {
+  console.log('UncaughtException Error')
+  console.log(err.name, err.message)
+  process.exit(1)
+})
+
+// handle unhandledRejection Error
+process.on('unhandledRejection', err => {
+  console.log('unhandledRejection Error')
+  console.log(err.name, err.message)
+  server.close(() => process.exit(1)) // server needs some time to deal with the remaining request
+})
