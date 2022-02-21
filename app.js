@@ -6,6 +6,8 @@ if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
 }
 
+const route = require('./routes/index')
+
 const app = express()
 const port = process.env.PORT || 3000
 const DB_URL = process.env.DATABASE.replace('<password>', process.env.DATABASE_PASSWORD)
@@ -13,9 +15,8 @@ const DB_URL = process.env.DATABASE.replace('<password>', process.env.DATABASE_P
 // connect to database
 mongoose.connect(DB_URL).then(() => console.log('Connected to database successfully'))
 
-app.get('/', (req, res) => {
-  res.send('hello world')
-})
+// Routes
+app.use(route)
 
 const server = app.listen(port, () => console.log(`The app is listening on port ${port}`))
 
