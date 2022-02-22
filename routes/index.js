@@ -1,8 +1,10 @@
+'use strict'
+
 const express = require('express')
 const router = express.Router()
 
-router.get('/', (req, res) => {
-  res.send('this is from index')
-})
+const user = require('./modules/user')
+
+router.use('/users', user)
 
 module.exports = router

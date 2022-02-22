@@ -15,8 +15,12 @@ const DB_URL = process.env.DATABASE.replace('<password>', process.env.DATABASE_P
 // connect to database
 mongoose.connect(DB_URL).then(() => console.log('Connected to database successfully'))
 
+// Body parser
+app.use(express.json({ limit: '10kb' }))
+app.use(express.urlencoded({ extended: true, limit: '10kb' }))
+
 // Routes
-app.use(route)
+app.use('/api/v1', route)
 
 const server = app.listen(port, () => console.log(`The app is listening on port ${port}`))
 

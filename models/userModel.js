@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const validator = require('validator')
+const bcrypt = require('bcrypt')
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -35,6 +36,16 @@ const userSchema = new mongoose.Schema({
       message: 'The PasswordConfirm is not equal to password'
     }
   }
+})
+
+userSchema.pre('save', async function (next) {
+  // only run this function when password actually pass to modified
+  if (!this.isModified('password')) return next()
+
+  this.password = await bcrypt.hash(this.password, 12)
+  this.passwordConfirm = undefined // passwordConfirm only use to validate password
+
+  next()
 })
 
 const User = mongoose.model('User', userSchema)
