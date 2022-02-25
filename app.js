@@ -7,6 +7,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 const route = require('./routes/index')
+const globalErrorHandler = require('./controllers/errorController')
 
 const app = express()
 const port = process.env.PORT || 3000
@@ -21,6 +22,9 @@ app.use(express.urlencoded({ extended: true, limit: '10kb' }))
 
 // Routes
 app.use('/api/v1', route)
+
+// Error middleware(all error in express will pass to here)
+app.use(globalErrorHandler)
 
 const server = app.listen(port, () => console.log(`The app is listening on port ${port}`))
 
