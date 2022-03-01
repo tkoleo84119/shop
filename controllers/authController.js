@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken')
 const User = require('../models/userModel')
 const catchAsync = require('../utils/catchAsync')
 const AppError = require('../utils/appError')
+const Email = require('../utils/email')
 
 const createAndSendToken = (user, statusCode, res) => {
   // let user can't receive private data
@@ -56,4 +57,21 @@ exports.forgetPassword = catchAsync(async (req, res, next) => {
 
   const resetToken = user.createPasswordResetToken()
   await user.save({ validateBeforeSave: false })
+
+  // send reset password email to client
+  try {
+    const resetURL = `${req.protocol}://${req.get('host')}/api/v1/users/resetPassword/${resetToken}`
+    await new Email(user, resetURL).sendPasswordReset()
+
+    res.status(200).json({
+      status: 'success',
+      message: 'The password reset email has been sent to your email address.'
+    })
+  } catch (err) {
+    user.createPasswordResetToken = undefined
+    user.checkPasswordResetExpired = undefined
+    await user.save({ validateBeforeSave: false })
+
+    return next(new AppError('There was an error when sending email, please try it again!', 500))
+  }
 })
