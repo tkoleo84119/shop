@@ -51,6 +51,10 @@ exports.authStatus = catchAsync(async (req, res, next) => {
   const currentUser = await User.findById(payload.id)
   if (!currentUser) return next(new AppError('The User is no logger exist', 401))
 
+  // check if user change password after token issued
+  if (currentUser.checkPasswordChange(payload.iat))
+    return next(new AppError('User recently changed password. Please log in again', 401))
+
   // pass currentUser to next route
   req.user = currentUser
   next()

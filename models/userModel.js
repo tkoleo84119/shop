@@ -42,13 +42,21 @@ const userSchema = new mongoose.Schema({
   passwordResetExpires: Date
 })
 
+// only run this function when password actually pass in
 userSchema.pre('save', async function (next) {
-  // only run this function when password actually pass to modified
   if (!this.isModified('password')) return next()
 
   this.password = await bcrypt.hash(this.password, 12)
   this.passwordConfirm = undefined // passwordConfirm only use to validate password
 
+  next()
+})
+
+// only run this function when password changed
+userSchema.pre('save', async function (next) {
+  if (!this.isModified('password') || this.isNew) return next()
+
+  this.passwordChangedAt = Date.now() - 1000
   next()
 })
 
@@ -67,6 +75,15 @@ userSchema.method('createPasswordResetToken', function () {
   this.passwordResetExpires = Date.now() + 10 * 60 * 1000
 
   return restToken
+})
+
+userSchema.method('checkPasswordChange', function (JWTTimestamp) {
+  if (this.passwordChangedAt) {
+    const changeTimestamp = parseInt(this.passwordChangedAt.getTime() / 1000, 10) // need to change 'ms' to 's'(because jwt timestamp is 's')
+    if (changeTimestamp > JWTTimestamp) return true
+  }
+
+  return false // mean no change password after token issued
 })
 
 const User = mongoose.model('User', userSchema)
