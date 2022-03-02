@@ -2,6 +2,7 @@
 
 const express = require('express')
 const mongoose = require('mongoose')
+const morgan = require('morgan')
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
 }
@@ -19,6 +20,11 @@ mongoose.connect(DB_URL).then(() => console.log('Connected to database successfu
 // Body parser
 app.use(express.json({ limit: '10kb' }))
 app.use(express.urlencoded({ extended: true, limit: '10kb' }))
+
+// Development logging
+if (process.NODE_ENV !== 'production') {
+  app.use(morgan('dev'))
+}
 
 // Routes
 app.use('/api/v1', route)
