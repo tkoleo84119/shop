@@ -56,7 +56,7 @@ userSchema.method('checkPassword', async (candidatePassword, userPassword) => {
   return await bcrypt.compare(candidatePassword, userPassword)
 })
 
-userSchema.method('createPasswordResetToken', () => {
+userSchema.method('createPasswordResetToken', function () {
   // generate restToken => this will be sent to client
   const restToken = crypto.randomBytes(32).toString('hex')
 

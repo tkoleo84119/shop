@@ -1,5 +1,6 @@
 'use strict'
 
+const crypto = require('crypto')
 const jwt = require('jsonwebtoken')
 
 const User = require('../models/userModel')
@@ -68,10 +69,27 @@ exports.forgetPassword = catchAsync(async (req, res, next) => {
       message: 'The password reset email has been sent to your email address.'
     })
   } catch (err) {
-    user.createPasswordResetToken = undefined
-    user.checkPasswordResetExpired = undefined
+    user.passwordRestToken = undefined
+    user.passwordResetExpires = undefined
     await user.save({ validateBeforeSave: false })
 
     return next(new AppError('There was an error when sending email, please try it again!', 500))
   }
+})
+
+exports.resetPassword = catchAsync(async (req, res, next) => {
+  // get user base on resetToken
+  const passwordResetToken = crypto.createHash('sha256').update(req.params.token).digest('hex')
+  const user = await User.findOne({ passwordResetToken, passwordResetExpires: { $gt: Date.now() } })
+
+  // If token not yet expired, user set new password
+  if (!user) return next(new AppError('Token has invalid or expired.', 400))
+
+  user.password = req.body.password
+  user.passwordConfirm = req.body.passwordConfirm
+  user.passwordRestToken = undefined
+  user.passwordResetExpires = undefined
+  await user.save()
+
+  res.status(200).json({ status: 'success' })
 })

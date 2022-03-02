@@ -14,7 +14,7 @@ const duplicateFieldDB = ({ keyValue }) => {
 }
 
 const validatorErrorDB = ({ errors }) => {
-  const errorMessages = Object.values(errors.errors).map(err => err.message)
+  const errorMessages = Object.values(errors).map(err => err.message)
   const message = errorMessages.join(' & ') // use '&' to connect different validatorError form DB
   return new AppError(message, 400)
 }
