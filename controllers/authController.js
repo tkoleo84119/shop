@@ -1,6 +1,7 @@
 'use strict'
 
 const crypto = require('crypto')
+const { promisify } = require('util')
 const jwt = require('jsonwebtoken')
 
 const User = require('../models/userModel')
@@ -30,6 +31,30 @@ const createAndSendToken = (user, statusCode, res) => {
   res.cookie('jwt', token, cookieOptions)
   res.status(statusCode).json({ status: 'success', token, data: { user } })
 }
+
+exports.authStatus = catchAsync(async (req, res, next) => {
+  let token
+
+  // get token from header or cookie
+  if (req.headers?.authorization?.startsWith('Bearer')) {
+    token = req.headers.authorization.split(' ')[1]
+  } else if (req.cookies?.jwt) {
+    token = req.cookies.jwt
+  }
+
+  if (!token) return next(new AppError('You are not logged in. Please log in to get access', 401))
+
+  // check token validity
+  const payload = await promisify(jwt.verify)(token, process.env.JWT_SECRET_KEY)
+
+  // check if user still exist
+  const currentUser = await User.findById(payload.id)
+  if (!currentUser) return next(new AppError('The User is no logger exist', 401))
+
+  // pass currentUser to next route
+  req.user = currentUser
+  next()
+})
 
 exports.signUp = catchAsync(async (req, res, next) => {
   const { name, email, password, passwordConfirm, role } = req.body

@@ -10,4 +10,6 @@ router.post('/signin', authController.signIn)
 router.post('/forgetPassword', authController.forgetPassword)
 router.patch('/resetPassword/:token', authController.resetPassword)
 
+router.use(authController.authStatus)
+
 module.exports = router
