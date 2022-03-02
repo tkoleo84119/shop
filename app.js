@@ -3,6 +3,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const morgan = require('morgan')
+const cookieParser = require('cookie-parser')
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
 }
@@ -20,6 +21,7 @@ mongoose.connect(DB_URL).then(() => console.log('Connected to database successfu
 // Body parser
 app.use(express.json({ limit: '10kb' }))
 app.use(express.urlencoded({ extended: true, limit: '10kb' }))
+app.use(cookieParser())
 
 // Development logging
 if (process.NODE_ENV !== 'production') {
