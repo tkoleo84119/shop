@@ -60,6 +60,15 @@ exports.authStatus = catchAsync(async (req, res, next) => {
   next()
 })
 
+exports.authRole =
+  (...roles) =>
+  (req, res, next) => {
+    if (!roles.includes(req.user.role))
+      return next(new AppError('You do not have permission to do this action'))
+
+    next()
+  }
+
 exports.signUp = catchAsync(async (req, res, next) => {
   const { name, email, password, passwordConfirm, role } = req.body
   const newUser = await User.create({ name, email, password, passwordConfirm, role })
