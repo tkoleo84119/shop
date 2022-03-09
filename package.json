@@ -4,7 +4,9 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "nodemon app.js",
+    "dev-data-I": "node dev-data/import-data --import",
+    "dev-data-D": "node dev-data/import-data --delete"
   },
   "author": "",
   "license": "ISC",
