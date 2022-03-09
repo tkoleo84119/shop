@@ -15,6 +15,13 @@ router
     productController.createProduct
   )
 
-router.route('/:id').get(productController.getProduct)
+router
+  .route('/:id')
+  .get(productController.getProduct)
+  .patch(
+    authController.authStatus,
+    authController.authRole('admin'),
+    productController.updateProduct
+  )
 
 module.exports = router
