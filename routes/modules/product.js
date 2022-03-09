@@ -23,5 +23,10 @@ router
     authController.authRole('admin'),
     productController.updateProduct
   )
+  .delete(
+    authController.authStatus,
+    authController.authRole('admin'),
+    productController.deleteProduct
+  )
 
 module.exports = router

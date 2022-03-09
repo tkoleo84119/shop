@@ -33,3 +33,10 @@ exports.updateProduct = catchAsync(async (req, res, next) => {
 
   res.status(200).json({ status: 'success', data: { product } })
 })
+
+exports.deleteProduct = catchAsync(async (req, res, next) => {
+  const product = await Product.findByIdAndDelete(req.params.id)
+  if (!product) return next(new AppError('No product found with this ID', 404))
+
+  res.status(204).json({ status: 'success', data: null })
+})
