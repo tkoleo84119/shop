@@ -42,15 +42,15 @@ reviewSchema.static('calcAverageRatings', async function (productId) {
 })
 
 reviewSchema.post('save', function (result) {
-  Review.calcAverageRatings(result.rating)
+  Review.calcAverageRatings(result.product)
 })
 
 reviewSchema.post('findOneAndUpdate', function (result) {
-  Review.calcAverageRatings(result.rating)
+  Review.calcAverageRatings(result.product)
 })
 
 reviewSchema.post('findOneAndDelete', function (result) {
-  Review.calcAverageRatings(result.rating)
+  Review.calcAverageRatings(result.product)
 })
 
 const Review = mongoose.model('Review', reviewSchema)

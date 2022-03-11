@@ -3,8 +3,12 @@
 const express = require('express')
 const router = express.Router()
 
+const review = require('./review')
 const productController = require('../../controllers/productController')
 const authController = require('../../controllers/authController')
+
+// pass productId to review routes
+router.use('/:id/reviews', review)
 
 router
   .route('/')
