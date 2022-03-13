@@ -16,6 +16,13 @@ router
     reviewController.createReview
   )
 
-router.route('/:id').get(reviewController.getReview)
+router
+  .route('/:id')
+  .get(reviewController.getReview)
+  .patch(
+    authController.authStatus,
+    authController.authRole('user', 'admin'),
+    reviewController.updateReview
+  )
 
 module.exports = router

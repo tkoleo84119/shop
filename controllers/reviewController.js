@@ -32,3 +32,14 @@ exports.createReview = catchAsync(async (req, res, next) => {
     data: { newReview }
   })
 })
+
+exports.updateReview = catchAsync(async (req, res, next) => {
+  const review = await Review.findByIdAndUpdate(req.params.id, req.body, {
+    new: true,
+    runValidators: true
+  })
+
+  if (!review) return next(new AppError('No review found with this ID', 404))
+
+  res.status(200).json({ status: 'success', data: { review } })
+})
