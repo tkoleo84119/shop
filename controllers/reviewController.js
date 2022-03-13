@@ -43,3 +43,14 @@ exports.updateReview = catchAsync(async (req, res, next) => {
 
   res.status(200).json({ status: 'success', data: { review } })
 })
+
+exports.deleteReview = catchAsync(async (req, res, next) => {
+  const review = await Review.findByIdAndDelete(req.params.id)
+
+  if (!review) return next(new AppError('No review found with this ID', 404))
+
+  res.status(204).json({
+    status: 'success',
+    data: null
+  })
+})

@@ -24,5 +24,10 @@ router
     authController.authRole('user', 'admin'),
     reviewController.updateReview
   )
+  .delete(
+    authController.authStatus,
+    authController.authRole('user', 'admin'),
+    reviewController.deleteReview
+  )
 
 module.exports = router
