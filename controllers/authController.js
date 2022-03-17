@@ -71,9 +71,12 @@ exports.authRole =
 
 exports.signUp = catchAsync(async (req, res, next) => {
   const { name, email, password, passwordConfirm, role } = req.body
-  const newUser = await User.create({ name, email, password, passwordConfirm, role })
+  await User.create({ name, email, password, passwordConfirm, role })
 
-  createAndSendToken(newUser, 201, res)
+  res.status(201).json({
+    status: 'success',
+    message: 'Create Account successfully'
+  })
 })
 
 exports.signIn = catchAsync(async (req, res, next) => {
