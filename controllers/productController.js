@@ -10,14 +10,22 @@ exports.createProduct = catchAsync(async (req, res, next) => {
   res.status(201).json({ status: 'success', data: { newProduct } })
 })
 
+const filter = query => {
+  if (query.name) {
+    query.name = { $regex: query.name, $options: 'i' }
+  }
+  return query
+}
+
 exports.getAllProducts = catchAsync(async (req, res, next) => {
-  const products = await Product.find()
+  const filterQuery = filter(req.query)
+  const products = await Product.find(filterQuery)
 
   res.status(200).json({ status: 'success', data: { products } })
 })
 
 exports.getProduct = catchAsync(async (req, res, next) => {
-  const product = await Product.findById(req.params.id)
+  const product = await Product.findById(req.params.id).populate('reviews')
   if (!product) return next(new AppError('No product found with this ID', 404))
 
   res.status(200).json({ status: 'success', data: { product } })

@@ -9,7 +9,7 @@ const catchAsync = require('../utils/catchAsync')
 const AppError = require('../utils/appError')
 const Email = require('../utils/email')
 
-const createAndSendToken = (user, statusCode, res) => {
+const createAndSendToken = (user, statusCode, message, res) => {
   // let user can't receive private data
   user.password = undefined
 
@@ -29,7 +29,7 @@ const createAndSendToken = (user, statusCode, res) => {
 
   // send token to client
   res.cookie('jwt', token, cookieOptions)
-  res.status(statusCode).json({ status: 'success', token, data: { user } })
+  res.status(statusCode).json({ status: 'success', token, data: { user }, message })
 }
 
 exports.authStatus = catchAsync(async (req, res, next) => {
@@ -90,7 +90,7 @@ exports.signIn = catchAsync(async (req, res, next) => {
     return next(new AppError('Incorrect email or password', 401))
 
   // send token to client
-  createAndSendToken(user, 200, res)
+  createAndSendToken(user, 200, 'Login successfully', res)
 })
 
 exports.forgetPassword = catchAsync(async (req, res, next) => {
@@ -153,5 +153,5 @@ exports.updatePassword = catchAsync(async (req, res, next) => {
   await user.save()
 
   // send token to client
-  createAndSendToken(user, 200, res)
+  createAndSendToken(user, 200, 'Update password successfully', res)
 })

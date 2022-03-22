@@ -41,6 +41,14 @@ reviewSchema.static('calcAverageRatings', async function (productId) {
   await Product.findByIdAndUpdate(productId, { ratingsAverage, ratingsQuantity })
 })
 
+reviewSchema.pre(/^find/, function (next) {
+  this.populate({
+    path: 'user',
+    select: 'name'
+  })
+  next()
+})
+
 reviewSchema.post('save', function (result) {
   Review.calcAverageRatings(result.product)
 })
