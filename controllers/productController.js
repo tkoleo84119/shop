@@ -1,5 +1,7 @@
 'use strict'
 
+const _ = require('lodash')
+
 const Product = require('../models/productModel')
 const catchAsync = require('../utils/catchAsync')
 const AppError = require('../utils/appError')
@@ -11,15 +13,19 @@ exports.createProduct = catchAsync(async (req, res, next) => {
 })
 
 const filter = query => {
+  const filterQuery = _.omit(query, ['page', 'limit', 'pageResults'])
+
   if (query.name) {
-    query.name = { $regex: query.name, $options: 'i' }
+    filterQuery.name = { $regex: query.name, $options: 'i' }
   }
-  return query
+
+  return filterQuery
 }
 
 exports.getAllProducts = catchAsync(async (req, res, next) => {
+  const skip = (req.query.page - 1) * req.query.pageResults
   const filterQuery = filter(req.query)
-  const products = await Product.find(filterQuery)
+  const products = await Product.find(filterQuery).skip(skip).limit(req.query.limit)
 
   res.status(200).json({ status: 'success', data: { products } })
 })
