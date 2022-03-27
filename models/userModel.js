@@ -16,6 +16,19 @@ const userSchema = new mongoose.Schema({
     lowercase: true,
     validate: [validator.isEmail, 'Please provide a valid email']
   },
+  phone: {
+    type: String,
+    validate: {
+      validator: function (value) {
+        return /^09\d{2}-?\d{3}-?\d{3}$/.test(value)
+      },
+      message: 'The phone is not a valid phone number'
+    }
+  },
+  address: {
+    type: String,
+    maxLength: [150, 'The address must be lower than 150 characters']
+  },
   role: {
     type: String,
     enum: ['admin', 'user'],
