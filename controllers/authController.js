@@ -48,7 +48,7 @@ exports.authStatus = catchAsync(async (req, res, next) => {
   const payload = await promisify(jwt.verify)(token, process.env.JWT_SECRET_KEY)
 
   // check if user still exist
-  const currentUser = await User.findById(payload.id)
+  const currentUser = await User.findById(payload.id).select('_id name email phone address')
   if (!currentUser) return next(new AppError('The User is no logger exist', 401))
 
   // check if user change password after token issued
@@ -85,7 +85,9 @@ exports.signIn = catchAsync(async (req, res, next) => {
   if (!email || !password) return next(new AppError('Please provide your email and password', 400))
 
   // check if email & password correct
-  const user = await User.findOne({ email }).select('+password')
+  const user = await User.findOne({ email })
+    .select('_id name email phone address')
+    .select('+password')
   if (!user || !(await user.checkPassword(password, user.password)))
     return next(new AppError('Incorrect email or password', 401))
 
