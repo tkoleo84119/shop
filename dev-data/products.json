@@ -10,10 +10,7 @@
       "3吋垂直翻轉觸控螢幕",
       "內建18種底片模擬模式"
     ],
-    "images": [
-      "https://www.bigcamera.com.tw/data/goods/202201/1641195457362693936.jpg",
-      "https://www.bigcamera.com.tw/data/editor_upload/images/X-T30%20II%20%E9%BB%91%E8%89%B2%202.jpg"
-    ],
+    "image": "https://www.bigcamera.com.tw/data/goods/202201/1641195457362693936.jpg",
     "description": "FUJIFILM X-T30 II的每一個元素都是為攝影師而設計的。從基於撥盤的操作、小巧輕便的機身，到最新一代的APS-C傳感器，它點亮了想像力，激發了創造力。更重要的是，X-T30 II融合了尖端、易用的功能——例如後觸摸屏和緊湊的內置閃光燈——與復古美學魅力相結合，讓攝影成為真正身臨其境的體驗。",
     "quantity": 10,
     "price": 20900,
@@ -28,10 +25,7 @@
       "14FPS高速連拍",
       "雙EXPEED 6影像處理引擎"
     ],
-    "images": [
-      "https://www.bigcamera.com.tw/data/goods/202102/1612336957205341358.jpg",
-      "https://www.bigcamera.com.tw/data/editor_upload/images/Z6%20II%202.jpg"
-    ],
+    "image": "https://www.bigcamera.com.tw/data/goods/202102/1612336957205341358.jpg",
     "description": "全新Nikon Z 6II幫助專業創作者呈現完美、細緻的清晰影像，並致力於更良好的操作體驗，毫不妥協。對專業攝影人士而言，它們不僅是高度可靠的夥伴，對於想在野外和險峻地形拍攝極致美景，或是捕捉街頭即興表演等精彩瞬間的攝影者來說，Z 6II亦將成為不可忽視的角色！",
     "quantity": 11,
     "price": 50800,
@@ -48,10 +42,7 @@
       "內建Lightroom後製編輯",
       "全機金屬機身堅固耐用與美觀"
     ],
-    "images": [
-      "https://www.bigcamera.com.tw/data/goods/202201/1643091663607730262.jpg",
-      "https://www.bigcamera.com.tw/data/editor_upload/images/ZX-1%20(16575)%202.jpg"
-    ],
+    "image": "https://www.bigcamera.com.tw/data/goods/202201/1643091663607730262.jpg",
     "description": "從拍攝到編輯，從發佈到備份，為您提供無縫體驗的相機理念。一氣呵成。沒有多餘步驟。讓您充分展現自我。創意攝影不只是為了捕捉完美的瞬間，還需要流暢的工作流程，ZEISS ZX1便是專為有此需求的人士設計的相機。這款相機專為從拍攝和編輯到保存和共享的獨特無縫創作過程而設計。",
     "quantity": 6,
     "price": 188000,
@@ -68,10 +59,7 @@
       "封閉式耳罩設計可隔絕外界聲響",
       "人體工學耳墊"
     ],
-    "images": [
-      "https://cs-d.ecimg.tw/items/DCAY7TA9009ESAH/000001_1619506993.jpg",
-      "https://www.sony.com.tw/image/91095120caba9c351dd284f2bcf03f97?fmt=pjpeg&wid=1014&hei=396&bgcolor=F1F5F9&bgc=F1F5F9"
-    ],
+    "image": "https://cs-d.ecimg.tw/items/DCAY7TA9009ESAH/000001_1619506993.jpg",
     "description": "透過高解析音質，以優於CD的音質，享受錄音室級音效的細微差異。您能感受到從訊號到喇叭的所有元件都散發出對音樂的熱情，感覺像是音樂家就在您面前表演一般。",
     "quantity": 22,
     "price": 17910,
@@ -86,10 +74,7 @@
       "適應性等化",
       "具有動態頭部追蹤功能的空間音訊"
     ],
-    "images": [
-      "https://cs-b.ecimg.tw/items/DYAJJ51900BQ0Z4/000001_1639378937.jpg",
-      "https://cs-d.ecimg.tw/items/DYAJCHA900B1B75/i010001_1607677929.jpg"
-    ],
+    "image": "https://cs-b.ecimg.tw/items/DYAJJ51900BQ0Z4/000001_1639378937.jpg",
     "description": "Apple設計的驅動單體能在全聽覺範圍內，以超低失真率呈現高傳真播放音質，同時，「主動式降噪」功能帶來令人沉醉的音樂。「通透模式」讓你聽見周遭的聲音。",
     "quantity": 20,
     "price": 15999,
@@ -99,10 +84,7 @@
     "name": "Bose 700無線消噪耳機",
     "category": "Headphones",
     "features": ["一流的可調式消噪效能", "高傳真音訊", "無與倫比的收音效果", "精簡化的輕量設計"],
-    "images": [
-      "https://cs-d.ecimg.tw/items/DMAAITA900B12C0/000001_1646619475.jpg",
-      "https://assets.bose.com/content/dam/Bose_DAM/Web/consumer_electronics/global/products/headphones/noise_cancelling_headphones_700/Refresh/HP700_PDP_inthebox_1x1.jpg/jcr:content/renditions/cq5dam.web.600.600.jpeg"
-    ],
+    "image": "https://cs-d.ecimg.tw/items/DMAAITA900B12C0/000001_1646619475.jpg",
     "description": "Bose 700無線消噪耳機以其強大的消噪功能、令人讚嘆的聲音及無與倫比的收音廣受好評，而且能協助將任何空間轉變為聽音樂、完成工作或暫時遠離喧囂並放鬆的完美場所。如果您正在尋找用來聽音樂和通話最優異的無線藍牙耳機，這就是了。",
     "quantity": 20,
     "price": 11500,
@@ -118,10 +100,7 @@
       "可180度螢幕攤平/165Hz刷新率 3ms",
       "支援PD3.0充電技術/全新刀鋒式3D風扇"
     ],
-    "images": [
-      "https://cs-d.ecimg.tw/items/DHAS6KA900BYZWQ/000001_1636611584.jpg",
-      "http://playin.tw/wp-content/uploads/2021/05/%E5%AE%98%E6%96%B9%E5%AE%A3%E5%82%B3%E5%9C%96.jpg"
-    ],
+    "image": "https://cs-d.ecimg.tw/items/DHAS6KA900BYZWQ/000001_1636611584.jpg",
     "description": "多功能的ROG Zephyrus G15兼具強大運算能力與可攜性,以1.9kg超薄機身執行頂級的Windows 10 Home遊戲。最高搭載WQHD 165Hz/3ms電競面板,兼具速度與豐富的細節,讓您深深沈浸在遊戲中。六個揚聲器提供豐富的Dolby Atmos音效,讓您沈浸在環繞音效中,享受豐富的娛樂體驗。",
     "quantity": 11,
     "price": 60900,
@@ -137,10 +116,7 @@
       "16吋QHD+(2560x1600),16:10黃金比例",
       "165Hz更新率, MiniLED,VESA DisplayHDR™ 1000認證"
     ],
-    "images": [
-      "https://cs-d.ecimg.tw/items/DHAK5VA900BSESB/000001_1631863827.jpg",
-      "https://cs-d.ecimg.tw/items/DHAK5VA900BSESB/i010017_1631863828.jpg"
-    ],
+    "image": "https://cs-d.ecimg.tw/items/DHAK5VA900BSESB/000001_1631863827.jpg",
     "description": "Creator Z16藤原浩聯名限定版完美融合了科技美學與潮流文化，極簡卻又醒目的外觀設計下搭載最新技術。最新Intel Corel i7處理器及NVIDIA GeForce RTX 3060筆記型電腦GPU。Creator Z16採用16:10的螢幕比例設計能帶來增加11%的視覺空間，True Pixel顯示技術打造的QHD+超高畫質MiniLED面板，符合100% DCI-P3色域範圍，搭配獨家True Color技術於出廠前進行色彩校正，可達到Delta E<2 的極度準確數值，為創作者與設計師提供最精準且鮮明的色彩。",
     "quantity": 5,
     "price": 72900,
@@ -156,10 +132,7 @@
       "16GB統一記憶體",
       "1TB SSD儲存裝置"
     ],
-    "images": [
-      "https://cs-b.ecimg.tw/items/DYAJBF1900C8X0H/000001_1641377900.jpg",
-      "https://lh3.googleusercontent.com/Ga5MJUjg7NO1yeVsEu8Cz4BncwHtt3pO0ZeneoKNGa32iMlrXPNF-IRRot39AHxk2GM5P965E_Cvaesq_SmV_FhazGd7efUFA-yRDWnO9aSek9I-u0SK5_Zt7J8bCO85Hn7i3Jtn"
-    ],
+    "image": "https://cs-b.ecimg.tw/items/DYAJBF1900C8X0H/000001_1641377900.jpg",
     "description": "史上最強的MacBook Pro，來了。首次為專業人士而設計的Apple晶片：超高速的M1 Pro或M1 Max晶片都能帶來徹底突破創新的效能與令人驚歎的電池續航力。再加上絢麗的Liquid Retina XDR顯示器、Mac筆電歷來最優異的相機與音訊品質，以及你需要的各種連接埠。這款超群絕倫的筆電，自成一格；它是力量超強的野獸，它是MacBook Pro。",
     "quantity": 13,
     "price": 74900,
@@ -175,10 +148,7 @@
       "同步零延遲耳機輸出",
       "隨插即用無需驅動(PC/Mac)"
     ],
-    "images": [
-      "https://diz36nn4q02zr.cloudfront.net/webapi/imagesV3/Original/SalePage/6475564/2/637822504531100000?v=1",
-      "https://i1.momoshop.com.tw/1646625948/goodsimg/0009/598/255/9598255_R1.webp"
-    ],
+    "image": "https://diz36nn4q02zr.cloudfront.net/webapi/imageV3/Original/SalePage/6475564/2/637822504531100000?v=1",
     "description": "在您的電腦上使用Blue最暢銷的Yeti USB麥克風系列產品，製作無與倫比的錄音。Yeti電容式麥克風使用專屬的3受音頭技術，可讓您以驚人的輕鬆方式製作原音重現、錄音室品質的錄音。四種不同的模式設定提供了驚人的彈性，讓您可以運用通常需要多個麥克風才能完成的方式來錄製音樂、播客、Twitch 直播、YouTube影片甚至密碼學講座的人聲。無論您是在家裡、外出，或在喜馬拉雅山，Yeti每次都能協助您製作出錄音室品質的錄音。",
     "quantity": 17,
     "price": 4990,
@@ -188,10 +158,7 @@
     "name": "SHURE SM58S 動圈式麥克風",
     "category": "Microphone",
     "features": ["動圈式麥克風", "有開關，無附線", "最適合人聲的麥克風"],
-    "images": [
-      "https://cs-d.ecimg.tw/items/AIAH0YA30645086/000001_1636944728.jpg",
-      "https://cs-c.ecimg.tw/items/AIAH0YA30645086/i010003_1500013600.jpg"
-    ],
+    "image": "https://cs-d.ecimg.tw/items/AIAH0YA30645086/000001_1636944728.jpg",
     "description": "SM58是專業歌手現場演出的理想之選， 能夠突出主唱與伴唱飽滿清晰的歌聲。即使在極端環境下，SM58也能夠對準主要聲源，同時有效降低背景噪音。它同時也倍受俱樂部、小型和大型現場演出DJ和主持人的歡迎。",
     "quantity": 33,
     "price": 3750,
@@ -206,10 +173,7 @@
       "高級電磁屏蔽可消除計算機顯示器和其他演播室設備發出的干擾",
       "易於安裝和拆卸，可精確控制麥克風位置"
     ],
-    "images": [
-      "https://cs-d.ecimg.tw/items/DMAFHVA900B04PH/000001_1605938259.jpg",
-      "https://img.pcstore.com.tw/~prod/M65807788/_sE_2003303438.jpg?pimg=static&P=1585133049"
-    ],
+    "image": "https://cs-d.ecimg.tw/items/DMAFHVA900B04PH/000001_1605938259.jpg",
     "description": "SM58是專業歌手現SM7B是一款可選擇頻率響應的心形話筒可在近距離錄音室和人聲應用中表現飽滿柔和的音質，同時屏蔽電磁噪音。",
     "quantity": 15,
     "price": 15800,
@@ -225,10 +189,7 @@
       "1200萬像素原深感測前置相機",
       "A15仿生晶片，效能表現快如閃電"
     ],
-    "images": [
-      "https://cs-e.ecimg.tw/items/DYAJJWA900BSSLQ/000001_1639455261.jpg",
-      "https://pgw.udn.com.tw/gw/photo.php?u=https://uc.udn.com.tw/photo/2021/09/24/realtime/13998049.jpg&x=0&y=0&sw=0&sh=0&sl=W&fw=800&exp=3600"
-    ],
+    "image": "https://cs-e.ecimg.tw/items/DYAJJWA900BSSLQ/000001_1639455261.jpg",
     "description": "快如閃電的晶片，電池續航力大躍升，還有全新的照片和影片拍攝功能，iPhone 13助你成就前所未有的精彩，現以兩款絕佳尺寸呈現。",
     "quantity": 55,
     "price": 22288,
@@ -238,10 +199,7 @@
     "name": "OPPO Reno7 Pro 5G",
     "category": "Smartphones",
     "features": ["6.5吋/3200萬前鏡", "5000萬三鏡頭主相機", "5000萬三鏡頭主相機"],
-    "images": [
-      "https://cs-e.ecimg.tw/items/DYAV2CA900E08W5/000001_1645414094.jpg",
-      "https://cs-f.ecimg.tw/items/DYAV2CA900E08W5/i010001_1645414048.jpg"
-    ],
+    "image": "https://cs-e.ecimg.tw/items/DYAV2CA900E08W5/000001_1645414094.jpg",
     "description": "OPPO Reno7 Pro 5G配置6.55 吋 HD+AMOLED「挖孔」螢幕，提供92.8%螢幕佔比，具備800nits亮度、99.94% DCI-P3 色域；支援90Hz螢幕更新率、180Hz螢幕觸控採樣率，帶來流暢的操作體驗；並覆蓋第五代康寧大猩猩玻璃，提升抗刮耐磨的表現。",
     "quantity": 30,
     "price": 21990,
@@ -257,10 +215,7 @@
       "Google相簿配備魔術橡皮擦功能",
       "新一代 Titan M2TM晶片安全防護"
     ],
-    "images": [
-      "https://cs-d.ecimg.tw/items/DYAT0VA900BUEVB/000001_1646214804.jpg",
-      "https://cs-e.ecimg.tw/items/DYAT0VA900BUEVB/i010010_1634111663.jpg"
-    ],
+    "image": "https://cs-d.ecimg.tw/items/DYAT0VA900BUEVB/000001_1646214804.jpg",
     "description": "Google Pixel 6 128GB配置6.4吋FHD+ OLED「挖孔」螢幕，採用20：9顯示比例，支援90Hz螢幕更新率，具備流暢顯示功能；待機螢幕模式提供資訊一覽、聽聲辨曲功能。正面覆蓋康寧大猩猩Victus玻璃，增強螢幕抗刮耐磨表現；擁有光學螢幕指紋辨識功能，有效保障個人隱私不輕易外洩。",
     "quantity": 30,
     "price": 20990,

@@ -14,7 +14,7 @@ const productSchema = new mongoose.Schema(
       default: 'Other'
     },
     features: [String],
-    images: [String],
+    image: String,
     description: {
       type: String,
       maxLength: [500, "The product's description must be less than 200 characters"]
