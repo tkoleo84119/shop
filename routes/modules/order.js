@@ -5,6 +5,9 @@ const authController = require('../../controllers/authController')
 const orderController = require('../../controllers/orderController')
 
 router.use(authController.authStatus)
-router.route('/').post(orderController.createOrder, orderController.createCheckoutSession)
+router
+  .route('/')
+  .post(orderController.createOrder, orderController.createCheckoutSession)
+  .get(orderController.getAllOrders)
 
 module.exports = router

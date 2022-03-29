@@ -6,6 +6,17 @@ const Order = require('../models/orderModel')
 const OrderDetail = require('../models/orderDetailModel')
 const catchAsync = require('../utils/catchAsync')
 
+const createQuery = user => {
+  const query = { user: user.id, paid: true }
+
+  if (user.role === 'admin') {
+    query.user = undefined
+    query.paid = undefined
+  }
+
+  return query
+}
+
 exports.createOrder = catchAsync(async (req, res, next) => {
   const { total } = req.body
   const order = await Order.create({ user: req.user.id, total })
@@ -75,3 +86,12 @@ exports.webhook = async (req, res) => {
     res.status(200).json({ received: true })
   }
 }
+
+exports.getAllOrders = catchAsync(async (req, res, next) => {
+  const query = createQuery(req.user)
+  const orders = await Order.find(query)
+    .populate('user', 'name')
+    .populate({ path: 'products', populate: { path: 'product', select: 'name' } })
+
+  res.status(200).json({ status: 'success', data: { orders } })
+})
