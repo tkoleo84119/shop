@@ -5,6 +5,7 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
 const Order = require('../models/orderModel')
 const OrderDetail = require('../models/orderDetailModel')
 const catchAsync = require('../utils/catchAsync')
+const AppError = require('../utils/appError')
 
 const createQuery = user => {
   const query = { user: user.id, paid: true }
@@ -94,4 +95,14 @@ exports.getAllOrders = catchAsync(async (req, res, next) => {
     .populate({ path: 'products', populate: { path: 'product', select: 'name' } })
 
   res.status(200).json({ status: 'success', data: { orders } })
+})
+
+exports.getOrder = catchAsync(async (req, res, next) => {
+  const order = await Order.findById(req.params.id)
+    .populate('user')
+    .populate({ path: 'products', populate: { path: 'product' } })
+
+  if (!order) return next(new AppError('No order found with this ID', 404))
+
+  res.status(200).json({ status: 'success', data: { order } })
 })
