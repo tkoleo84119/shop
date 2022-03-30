@@ -86,7 +86,7 @@ exports.signIn = catchAsync(async (req, res, next) => {
 
   // check if email & password correct
   const user = await User.findOne({ email })
-    .select('_id name email phone address')
+    .select('_id name email phone address role')
     .select('+password')
   if (!user || !(await user.checkPassword(password, user.password)))
     return next(new AppError('Incorrect email or password', 401))

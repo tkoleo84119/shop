@@ -11,17 +11,17 @@ const createQuery = user => {
   const query = { user: user.id, paid: true }
 
   if (user.role === 'admin') {
-    query.user = undefined
-    query.paid = undefined
+    return _.omit(query, ['user', 'paid'])
   }
 
   return query
 }
 
 exports.createOrder = catchAsync(async (req, res, next) => {
-  const { subTotal } = req.body
+  const { subTotal, cart } = req.body
   const order = await Order.create({
     user: req.user.id,
+    products: Object.keys(cart),
     subTotal,
     deliveryFee: subTotal > 1500 ? 0 : 200
   })
@@ -97,7 +97,7 @@ exports.webhook = async (req, res) => {
 
     await Order.findByIdAndUpdate(session.client_reference_id, {
       paid: true,
-      products: products.map(product => product._id)
+      orderDetails: products.map(product => product._id)
     })
 
     res.status(200).json({ received: true })
@@ -106,9 +106,7 @@ exports.webhook = async (req, res) => {
 
 exports.getAllOrders = catchAsync(async (req, res, next) => {
   const query = createQuery(req.user)
-  const orders = await Order.find(query)
-    .populate('user', 'name')
-    .populate({ path: 'products', populate: { path: 'product', select: 'name' } })
+  const orders = await Order.find(query).populate('user', 'name').populate('products', 'name')
 
   res.status(200).json({ status: 'success', data: { orders } })
 })
@@ -116,7 +114,7 @@ exports.getAllOrders = catchAsync(async (req, res, next) => {
 exports.getOrder = catchAsync(async (req, res, next) => {
   const order = await Order.findById(req.params.id)
     .populate('user')
-    .populate({ path: 'products', populate: { path: 'product' } })
+    .populate({ path: 'orderDetails', populate: { path: 'product' } })
 
   if (!order) return next(new AppError('No order found with this ID', 404))
 

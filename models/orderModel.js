@@ -10,6 +10,12 @@ const orderSchema = new mongoose.Schema({
   products: [
     {
       type: mongoose.ObjectId,
+      ref: 'Product'
+    }
+  ],
+  orderDetails: [
+    {
+      type: mongoose.ObjectId,
       ref: 'OrderDetail'
     }
   ],
