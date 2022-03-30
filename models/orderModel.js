@@ -12,9 +12,14 @@ const orderSchema = new mongoose.Schema({
       ref: 'OrderDetail'
     }
   ],
-  total: {
+  subTotal: {
     type: Number,
-    required: [true, 'Please provide total price'],
+    required: [true, 'Please provide subTotal price'],
+    min: [0, 'The total price must be more than 0']
+  },
+  deliveryFee: {
+    type: Number,
+    required: [true, 'Please provide delivery fee'],
     min: [0, 'The total price must be more than 0']
   },
   createdAt: {

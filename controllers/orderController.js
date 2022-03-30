@@ -19,8 +19,12 @@ const createQuery = user => {
 }
 
 exports.createOrder = catchAsync(async (req, res, next) => {
-  const { total } = req.body
-  const order = await Order.create({ user: req.user.id, total })
+  const { subTotal } = req.body
+  const order = await Order.create({
+    user: req.user.id,
+    subTotal,
+    deliveryFee: subTotal > 1500 ? 0 : 200
+  })
 
   req.body.order = order // pass order to next step
 
@@ -29,6 +33,20 @@ exports.createOrder = catchAsync(async (req, res, next) => {
 
 exports.createCheckoutSession = catchAsync(async (req, res, next) => {
   const { order, cart } = req.body
+  const productData = Object.keys(cart).map(id => {
+    return {
+      quantity: cart[id].num,
+      price_data: {
+        currency: 'twd',
+        unit_amount: cart[id].price * 100,
+        product_data: {
+          name: cart[id].name,
+          description: cart[id].description,
+          images: [cart[id].image]
+        }
+      }
+    }
+  })
 
   const session = await stripe.checkout.sessions.create({
     mode: 'payment',
@@ -38,20 +56,18 @@ exports.createCheckoutSession = catchAsync(async (req, res, next) => {
     customer_email: req.user.email,
     client_reference_id: order._id.toString(),
     metadata: _.mapValues(cart, 'num'),
-    line_items: Object.keys(cart).map(id => {
-      return {
-        quantity: cart[id].num,
+    line_items: productData.concat([
+      {
+        quantity: 1,
         price_data: {
           currency: 'twd',
-          unit_amount: cart[id].price * 100,
+          unit_amount: order.deliveryFee * 100,
           product_data: {
-            name: cart[id].name,
-            description: cart[id].description,
-            images: [cart[id].image]
+            name: 'Delivery Fee'
           }
         }
       }
-    })
+    ])
   })
 
   res.status(200).json({ status: 'success', session })
