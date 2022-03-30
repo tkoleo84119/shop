@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const Product = require('../models/productModel')
 
 const orderDetailSchema = new mongoose.Schema({
   order: {
@@ -16,6 +17,12 @@ const orderDetailSchema = new mongoose.Schema({
     required: [true, 'Please provide a quantity'],
     default: 1
   }
+})
+
+orderDetailSchema.post('save', async function (result, next) {
+  // decrease quantity after oderDetail create(payment is paid successfully)
+  await Product.findByIdAndUpdate(result.product, { $inc: { quantity: -result.quantity } })
+  next()
 })
 
 const OrderDetail = mongoose.model('OrderDetail', orderDetailSchema)
