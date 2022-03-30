@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const OrderDetail = require('../models/orderDetailModel')
 
 const orderSchema = new mongoose.Schema({
   user: {
@@ -30,6 +31,11 @@ const orderSchema = new mongoose.Schema({
     type: Boolean,
     default: false
   }
+})
+
+orderSchema.post('findOneAndDelete', async function (result, next) {
+  await OrderDetail.deleteMany({ order: result._id })
+  next()
 })
 
 const Order = mongoose.model('Order', orderSchema)

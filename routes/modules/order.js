@@ -10,6 +10,9 @@ router
   .post(orderController.createOrder, orderController.createCheckoutSession)
   .get(orderController.getAllOrders)
 
-router.route('/:id').get(orderController.getOrder)
+router
+  .route('/:id')
+  .get(orderController.getOrder)
+  .delete(authController.authRole('admin'), orderController.deleteOrder)
 
 module.exports = router

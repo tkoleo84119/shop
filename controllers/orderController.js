@@ -122,3 +122,11 @@ exports.getOrder = catchAsync(async (req, res, next) => {
 
   res.status(200).json({ status: 'success', data: { order } })
 })
+
+exports.deleteOrder = catchAsync(async (req, res, next) => {
+  const order = await Order.findByIdAndDelete(req.params.id)
+
+  if (!order) return next(new AppError('No order found with this ID', 404))
+
+  res.status(204).json({ status: 'success', message: 'Delete order successfully', data: null })
+})
