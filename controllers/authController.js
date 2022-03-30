@@ -48,7 +48,7 @@ exports.authStatus = catchAsync(async (req, res, next) => {
   const payload = await promisify(jwt.verify)(token, process.env.JWT_SECRET_KEY)
 
   // check if user still exist
-  const currentUser = await User.findById(payload.id).select('_id name email phone address')
+  const currentUser = await User.findById(payload.id).select('_id name email phone address role')
   if (!currentUser) return next(new AppError('The User is no logger exist', 401))
 
   // check if user change password after token issued
