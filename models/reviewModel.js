@@ -28,6 +28,8 @@ const reviewSchema = new mongoose.Schema({
   }
 })
 
+reviewSchema.index({ user: 1, product: 1 }, { unique: true })
+
 // When review create, update and delete => run calcAverageRatings to update product's rating
 reviewSchema.static('calcAverageRatings', async function (productId) {
   const status = await this.aggregate([
