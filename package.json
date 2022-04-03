@@ -4,8 +4,8 @@
   "description": "",
   "main": "app.js",
   "engines": {
-        "node": ">=8.10.0"
-    },
+    "node": ">=8.10.0"
+  },
   "scripts": {
     "start": "nodemon app.js",
     "dev-data-I": "node dev-data/import-data --import",
@@ -20,12 +20,15 @@
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
     "html-to-text": "^8.1.0",
+    "imgur": "^1.0.2",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.21",
     "mongoose": "^6.2.2",
     "morgan": "^1.10.0",
+    "multer": "^1.4.4",
     "nodemailer": "^6.7.2",
     "pug": "^3.0.2",
+    "sharp": "^0.30.3",
     "stripe": "^8.213.0",
     "validator": "^13.7.0"
   },

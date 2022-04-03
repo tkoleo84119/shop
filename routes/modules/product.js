@@ -16,6 +16,8 @@ router
   .post(
     authController.authStatus,
     authController.authRole('admin'),
+    productController.uploadProductImage,
+    productController.resizeProductImage,
     productController.createProduct
   )
 

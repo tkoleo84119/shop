@@ -166,3 +166,6 @@ dist
 
 # SvelteKit build / generate output
 .svelte-kit
+
+# storage for product image for temporary
+temp/

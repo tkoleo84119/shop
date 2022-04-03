@@ -1,15 +1,59 @@
 'use strict'
 
 const _ = require('lodash')
+const multer = require('multer')
+const sharp = require('sharp')
+const imgur = require('imgur')
 
 const Product = require('../models/productModel')
 const catchAsync = require('../utils/catchAsync')
 const AppError = require('../utils/appError')
 
-exports.createProduct = catchAsync(async (req, res, next) => {
-  const newProduct = await Product.create(req.body)
+const changeFeature = formValues => {
+  if (Array.isArray(formValues.features)) return formValues
 
-  res.status(201).json({ status: 'success', data: { newProduct } })
+  formValues.features = formValues.features.split(',').map(feature => feature.trim())
+  return formValues
+}
+
+const multerStorage = multer.memoryStorage()
+const multerFileFilter = (req, file, cb) => {
+  if (file.mimetype.startsWith('image')) {
+    cb(null, true)
+  } else {
+    cb(new AppError('This file is not image, please try again.', 400), false)
+  }
+}
+
+const upload = multer({ storage: multerStorage, fileFilter: multerFileFilter })
+
+exports.uploadProductImage = upload.single('image')
+
+exports.resizeProductImage = catchAsync(async (req, res, next) => {
+  if (!req.file) return next()
+  const fileName = `${req.body.name}.jpeg`
+
+  req.file = await sharp(req.file.buffer)
+    .resize(512, 256)
+    .toFormat('jpeg')
+    .jpeg({ quality: 90 })
+    .toFile(`temp/${fileName}`)
+
+  next()
+})
+
+exports.createProduct = catchAsync(async (req, res, next) => {
+  const { file } = req
+  imgur.setClientId(process.env.IMGUR_CLIENT_ID)
+  if (file) {
+    const image = await imgur.uploadFile(`temp/${req.body.name}.jpeg`)
+    req.body.image = image.link
+  }
+
+  const formValues = changeFeature(req.body)
+  const product = await Product.create(formValues)
+
+  res.status(201).json({ status: 'success', data: { product } })
 })
 
 const filter = query => {
