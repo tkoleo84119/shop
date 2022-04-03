@@ -82,7 +82,16 @@ exports.getProduct = catchAsync(async (req, res, next) => {
 })
 
 exports.updateProduct = catchAsync(async (req, res, next) => {
-  const product = await Product.findByIdAndUpdate(req.params.id, req.body, {
+  const { file } = req
+  imgur.setClientId(process.env.IMGUR_CLIENT_ID)
+
+  if (file) {
+    const image = await imgur.uploadFile(`temp/${req.body.name}.jpeg`)
+    req.body.image = image.link
+  }
+
+  const formValues = changeFeature(req.body)
+  const product = await Product.findByIdAndUpdate(req.params.id, formValues, {
     new: true,
     runValidators: true
   })

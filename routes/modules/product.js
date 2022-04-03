@@ -27,6 +27,8 @@ router
   .patch(
     authController.authStatus,
     authController.authRole('admin'),
+    productController.uploadProductImage,
+    productController.resizeProductImage,
     productController.updateProduct
   )
   .delete(
