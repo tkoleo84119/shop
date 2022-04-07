@@ -26,7 +26,7 @@ router
   )
   .delete(
     authController.authStatus,
-    authController.authRole('user', 'admin'),
+    authController.authRole('admin'),
     reviewController.deleteReview
   )
 
