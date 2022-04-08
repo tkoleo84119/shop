@@ -39,8 +39,12 @@ reviewSchema.static('calcAverageRatings', async function (productId) {
     }
   ])
 
-  const { ratingsAverage, ratingsQuantity } = status[0]
-  await Product.findByIdAndUpdate(productId, { ratingsAverage, ratingsQuantity })
+  if (status[0]) {
+    const { ratingsAverage, ratingsQuantity } = status[0]
+    await Product.findByIdAndUpdate(productId, { ratingsAverage, ratingsQuantity })
+  } else {
+    await Product.findByIdAndUpdate(productId, { ratingsAverage: 0, ratingsQuantity: 0 })
+  }
 })
 
 reviewSchema.pre(/^find/, function (next) {
