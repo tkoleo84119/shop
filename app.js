@@ -4,6 +4,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const morgan = require('morgan')
 const cors = require('cors')
+const helmet = require('helmet')
 const cookieParser = require('cookie-parser')
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
@@ -25,6 +26,9 @@ app.use(express.json({ limit: '10kb', verify: (req, res, buffer) => (req.rawBody
 app.use(express.urlencoded({ extended: true, limit: '10kb' }))
 app.use(cookieParser())
 app.use(cors())
+
+// Set security HTTP header
+app.use(helmet())
 
 // Development logging
 if (process.NODE_ENV !== 'production') {
