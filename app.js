@@ -7,6 +7,7 @@ const cors = require('cors')
 const helmet = require('helmet')
 const rateLimit = require('express-rate-limit')
 const mongoSanitize = require('express-mongo-sanitize')
+const xss = require('xss-clean')
 const cookieParser = require('cookie-parser')
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
@@ -49,6 +50,9 @@ app.use(cors())
 
 // Data sanitization against NoSQL query injection
 app.use(mongoSanitize())
+
+// Data sanitization against XSS
+app.use(xss())
 
 // Routes
 app.use('/api/v1', route)
