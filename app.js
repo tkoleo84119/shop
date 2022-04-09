@@ -6,6 +6,7 @@ const morgan = require('morgan')
 const cors = require('cors')
 const helmet = require('helmet')
 const rateLimit = require('express-rate-limit')
+const mongoSanitize = require('express-mongo-sanitize')
 const cookieParser = require('cookie-parser')
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
@@ -45,6 +46,9 @@ app.use(express.json({ limit: '10kb', verify: (req, res, buffer) => (req.rawBody
 app.use(express.urlencoded({ extended: true, limit: '10kb' }))
 app.use(cookieParser())
 app.use(cors())
+
+// Data sanitization against NoSQL query injection
+app.use(mongoSanitize())
 
 // Routes
 app.use('/api/v1', route)
