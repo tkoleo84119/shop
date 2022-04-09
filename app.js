@@ -5,6 +5,7 @@ const mongoose = require('mongoose')
 const morgan = require('morgan')
 const cors = require('cors')
 const helmet = require('helmet')
+const rateLimit = require('express-rate-limit')
 const cookieParser = require('cookie-parser')
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
@@ -21,12 +22,6 @@ const DB_URL = process.env.DATABASE.replace('<password>', process.env.DATABASE_P
 // connect to database
 mongoose.connect(DB_URL).then(() => console.log('Connected to database successfully'))
 
-// Body parser
-app.use(express.json({ limit: '10kb', verify: (req, res, buffer) => (req.rawBody = buffer) }))
-app.use(express.urlencoded({ extended: true, limit: '10kb' }))
-app.use(cookieParser())
-app.use(cors())
-
 // Set security HTTP header
 app.use(helmet())
 
@@ -34,6 +29,22 @@ app.use(helmet())
 if (process.NODE_ENV !== 'production') {
   app.use(morgan('dev'))
 }
+
+// Limit req/min on same req
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 100,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: 'Too many requests from this IP, please try again one hour later.'
+})
+app.use(limiter)
+
+// Body parser
+app.use(express.json({ limit: '10kb', verify: (req, res, buffer) => (req.rawBody = buffer) }))
+app.use(express.urlencoded({ extended: true, limit: '10kb' }))
+app.use(cookieParser())
+app.use(cors())
 
 // Routes
 app.use('/api/v1', route)
