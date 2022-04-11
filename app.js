@@ -57,7 +57,7 @@ app.use(xss())
 app.post('/webhook', cors(), orderController.webhook)
 
 // CORS settings
-const whitelist = [process.env.FRONTEND_URL]
+const whitelist = [process.env.FRONTEND_URL, 'http://localhost:8000']
 const corsOptions = {
   origin: function (origin, callback) {
     if (whitelist.indexOf(origin) !== -1) {
