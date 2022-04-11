@@ -7,7 +7,8 @@
     "node": ">=8.10.0"
   },
   "scripts": {
-    "start": "nodemon app.js",
+    "start": "node app.js",
+    "dev": "nodemon app.js",
     "dev-data-I": "node dev-data/import-data --import",
     "dev-data-D": "node dev-data/import-data --delete"
   },
