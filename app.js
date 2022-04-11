@@ -46,7 +46,6 @@ app.use(limiter)
 app.use(express.json({ limit: '10kb', verify: (req, res, buffer) => (req.rawBody = buffer) }))
 app.use(express.urlencoded({ extended: true, limit: '10kb' }))
 app.use(cookieParser())
-app.use(cors())
 
 // Data sanitization against NoSQL query injection
 app.use(mongoSanitize())
@@ -54,9 +53,23 @@ app.use(mongoSanitize())
 // Data sanitization against XSS
 app.use(xss())
 
+// Route for stripe webhooks
+app.post('/webhook', cors(), orderController.webhook)
+
+// CORS settings
+const whitelist = [process.env.FRONTEND_URL]
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  }
+}
+
 // Routes
-app.use('/api/v1', route)
-app.post('/webhook', orderController.webhook)
+app.use('/api/v1', cors(corsOptions), route)
 
 // Error middleware(all error in express will pass to here)
 app.use(globalErrorHandler)
