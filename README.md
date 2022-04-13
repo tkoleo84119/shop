@@ -2,7 +2,7 @@
 The project is to provide API for [shop-client project](https://github.com/tkoleo84119/shop-client).
 
 ## Live DEMO
-Please click [here](https://vincelee9527.github.io/twitter-front-end-vue/#/signin) to go to DEMO website.
+Please click [here](https://kerwin-eshop.netlify.app/) to go to DEMO website.
 
 ## API document
 This API documentation is made using Apiary, please click [here](https://eshopapi7.docs.apiary.io/#reference/0) to see more detail.
