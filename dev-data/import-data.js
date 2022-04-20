@@ -4,6 +4,9 @@ const path = require('path')
 const mongoose = require('mongoose')
 const User = require('../models/userModel')
 const Product = require('../models/productModel')
+const Order = require('../models/orderModel')
+const OrderDetail = require('../models/orderDetailModel')
+const Review = require('../models/reviewModel')
 require('dotenv').config()
 
 const DB_URL = process.env.DATABASE.replace('<password>', process.env.DATABASE_PASSWORD)
@@ -32,6 +35,9 @@ const deleteData = async () => {
   try {
     await User.deleteMany()
     await Product.deleteMany()
+    await Order.deleteMany()
+    await OrderDetail.deleteMany()
+    await Review.deleteMany()
     console.log('delete data success!')
   } catch (err) {
     console.log(err)
